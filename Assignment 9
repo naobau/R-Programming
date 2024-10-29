@@ -1,0 +1,27 @@
+# Basic visualization
+data("mtcars")
+plot(mtcars$hp, mtcars$mpg,
+     main = "Horsepower vs. Miles per Gallon",
+     xlab = "Horsepower (hp)",
+     ylab = "Miles per Gallon (mpg)",
+     col = "blue", pch = 19)
+
+
+install.packages("lattice")
+install.packages("ggplot2")
+
+# Lattice Visualization 
+library(lattice)
+densityplot(~mpg | factor(cyl), data = mtcars,
+            main = "Density Plot of MPG by Cylinder Count",
+            xlab = "Miles per Gallon (mpg)",
+            layout = c(1, 3))
+
+# gg plot visualization
+
+library(ggplot2)
+ggplot(mtcars, aes(x = hp, y = mpg, color = factor(cyl))) +
+  geom_point(size = 3) +
+  labs(title = "Horsepower vs. Miles per Gallon by Cylinder Count",
+       x = "Horsepower (hp)", y = "Miles per Gallon (mpg)", color = "Cylinders") +
+  theme_minimal()
